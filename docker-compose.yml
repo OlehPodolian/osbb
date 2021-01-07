@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  web-client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+#      args:
+#        - CONFIGURATION=development
+    container_name: web-client
+    image: web-client
+    ports:
+      - "8080:80"
+    networks:
+      - osbb-network
+
+networks:
+  osbb-network:
+    name: osbb-network
+    driver: bridge
