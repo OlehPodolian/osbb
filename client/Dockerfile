@@ -17,7 +17,7 @@ EXPOSE 80
 
 RUN npm rebuild node-sass
 #RUN npm run build --${CONFIGURATION} --aot
-RUN npm run build --aot
+RUN npm run build --prod --aot
 
 # Stage 1: serve app with nginx server
 FROM nginx:latest
@@ -28,6 +28,6 @@ COPY nginx/default.conf /etc/nginx/conf.d/
 RUN rm -rf /usr/share/nginx/html/*
 
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
-COPY --from=build /app/dist/ng-flat-able /usr/share/nginx/html
+COPY --from=build /app/dist/ng-monster /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]

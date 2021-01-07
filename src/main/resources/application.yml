@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ossb
+
+  data:
+    mongodb:
+      database: osbb
+      username: mongo-user
+      password: mongo-pass
+      port: 27017
+      host: localhost
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/osbb
+    driver-class-name: org.postgresql.Driver
+    username: app_user
+    password: 12345678
+    hikari:
+      maximum-pool-size: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+

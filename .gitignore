@@ -35,3 +35,6 @@ build/
 .mvn*
 
 client/node_modules
+
+/data/*
+/.mvn/*
