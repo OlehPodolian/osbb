@@ -55,8 +55,8 @@ services:
       dockerfile: Dockerfile
     image: osbb-api:latest
     container_name: osbb-api
-#    environment:
-#      SPRING_PROFILES_ACTIVE: development
+    environment:
+      SPRING_PROFILES_ACTIVE: development
     networks:
       - osbb-network
     depends_on:
@@ -65,6 +65,36 @@ services:
     ports:
       - 8082:8082
       - 1082:1082
+
+  grafana:
+    image: grafana/grafana:6.2.2
+    ports:
+      - 3000:3000
+    volumes:
+      - ./databases/influxdb.yaml:/etc/grafana/provisioning/datasources/influxdb.yaml
+      - ./databases/SystemDashboard.json:/var/lib/grafana/dashboards/SystemDashBoard.json
+      - ./databases/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    depends_on:
+      - influxdb
+
+  influxdb:
+    image: influxdb:1.7.6
+    ports:
+      - 8086:8086
+    #    volumes:
+    #      - /var/lib/influxdb
+    environment:
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+      INFLUXDB_DB: boot
+      INFLUXDB_USER: user
+      INFLUXDB_USER_PASSWORD: pass
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: secret
+
+
+
 
 networks:
   osbb-network:

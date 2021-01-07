@@ -1,0 +1,13 @@
+server:
+  port: 8082
+
+spring:
+  data:
+    mongodb:
+      host: mongo-osbb
+
+  datasource:
+    url: jdbc:postgresql://postgres-osbb:5432/osbb
+
+
+
