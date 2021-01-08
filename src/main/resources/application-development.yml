@@ -10,4 +10,3 @@ spring:
     url: jdbc:postgresql://postgres-osbb:5432/osbb
 
 
-

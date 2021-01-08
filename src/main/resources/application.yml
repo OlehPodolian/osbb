@@ -26,4 +26,22 @@ spring:
     hibernate:
       ddl-auto: validate
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    metrics:
+      enabled: true
+#  metrics:
+#    export:
+#      influx:
+#        db: boot
+#        userName: user
+#        password: pass
+#        uri: http://influxdb:8086
+#        step: 15s
+#        auto-create-db: false
+
 
